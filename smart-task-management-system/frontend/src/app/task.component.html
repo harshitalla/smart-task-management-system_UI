@@ -1,0 +1,88 @@
+<div class="page">
+  <header>
+    <div>
+      <h1>Smart Task Management</h1>
+      <p>Welcome, {{ auth.getUser()?.name }}</p>
+    </div>
+    <button class="logout" (click)="logout()">Logout</button>
+  </header>
+
+  <section class="card">
+    <h2>{{ editingId ? 'Edit Task' : 'Create Task' }}</h2>
+
+    <form [formGroup]="form" (ngSubmit)="saveTask()">
+      <div class="grid">
+        <div>
+          <label>Title</label>
+          <input formControlName="title" placeholder="Task title">
+          <small *ngIf="form.controls.title.touched && form.controls.title.invalid">
+            Title is required.
+          </small>
+        </div>
+
+        <div>
+          <label>Priority</label>
+          <select formControlName="priority">
+            <option>Low</option>
+            <option>Medium</option>
+            <option>High</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Status</label>
+          <select formControlName="status">
+            <option>Pending</option>
+            <option>In Progress</option>
+            <option>Completed</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Deadline</label>
+          <input type="date" formControlName="deadline">
+        </div>
+      </div>
+
+      <label>Description</label>
+      <textarea formControlName="description" rows="3" placeholder="Task description"></textarea>
+
+      <button type="submit">{{ editingId ? 'Update Task' : 'Add Task' }}</button>
+      <button type="button" class="secondary" *ngIf="editingId" (click)="resetForm()">
+        Cancel
+      </button>
+    </form>
+  </section>
+
+  <section class="card">
+    <div class="filters">
+      <input [(ngModel)]="search" [ngModelOptions]="{standalone: true}" placeholder="Search tasks...">
+
+      <select [(ngModel)]="statusFilter" [ngModelOptions]="{standalone: true}">
+        <option>All</option>
+        <option>Pending</option>
+        <option>In Progress</option>
+        <option>Completed</option>
+      </select>
+    </div>
+
+    <div class="task-list">
+      <div class="task" *ngFor="let task of filteredTasks">
+        <div>
+          <h3>{{ task.title }}</h3>
+          <p>{{ task.description }}</p>
+          <span>Priority: <b>{{ task.priority }}</b></span>
+          <span>Status: <b>{{ task.status }}</b></span>
+          <span *ngIf="task.deadline">Deadline: {{ task.deadline | date }}</span>
+        </div>
+
+        <div class="actions">
+          <button (click)="editTask(task)">Edit</button>
+          <button class="danger" (click)="deleteTask(task.id!)">Delete</button>
+        </div>
+      </div>
+
+      <p *ngIf="filteredTasks.length === 0">No tasks found.</p>
+    </div>
+  </section>
+</div>

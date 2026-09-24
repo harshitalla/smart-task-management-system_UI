@@ -1,0 +1,148 @@
+.page {
+  max-width: 1100px;
+  margin: auto;
+  padding: 25px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+header h1 {
+  margin-bottom: 5px;
+}
+
+header p {
+  margin: 0;
+  color: #666;
+}
+
+.card {
+  background: white;
+  padding: 22px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 3px 15px rgba(0,0,0,.06);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin: 8px 0 6px;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+button {
+  padding: 10px 16px;
+  margin-top: 15px;
+  margin-right: 8px;
+  border: 0;
+  border-radius: 6px;
+  background: #1976d2;
+  color: white;
+}
+
+.secondary {
+  background: #777;
+}
+
+.logout {
+  background: #333;
+}
+
+.danger {
+  background: #d32f2f;
+}
+
+small {
+  color: #d32f2f;
+}
+
+.filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.filters input {
+  flex: 1;
+}
+
+.filters select {
+  width: 180px;
+}
+
+.task {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  border: 1px solid #ddd;
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.task h3 {
+  margin-top: 0;
+}
+
+.task p {
+  color: #555;
+}
+
+.task span {
+  display: inline-block;
+  margin-right: 15px;
+  font-size: 14px;
+}
+
+.actions {
+  min-width: 150px;
+}
+
+@media (max-width: 800px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .task {
+    flex-direction: column;
+  }
+
+  .actions {
+    min-width: 0;
+  }
+}
+
+@media (max-width: 500px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .filters {
+    flex-direction: column;
+  }
+
+  .filters select {
+    width: 100%;
+  }
+}

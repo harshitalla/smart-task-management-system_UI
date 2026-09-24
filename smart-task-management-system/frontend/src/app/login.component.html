@@ -1,0 +1,28 @@
+<div class="login-page">
+  <form class="login-card" [formGroup]="form" (ngSubmit)="login()">
+    <h1>Task Manager</h1>
+    <p>Sign in to manage your tasks</p>
+
+    <label>Email</label>
+    <input type="email" formControlName="email" placeholder="Email">
+    <small *ngIf="form.controls.email.touched && form.controls.email.invalid">
+      Enter a valid email.
+    </small>
+
+    <label>Password</label>
+    <input type="password" formControlName="password" placeholder="Password">
+    <small *ngIf="form.controls.password.touched && form.controls.password.invalid">
+      Password is required.
+    </small>
+
+    <div class="error" *ngIf="error">{{ error }}</div>
+
+    <button type="submit">Login</button>
+
+    <div class="demo">
+      <b>Demo:</b><br>
+      <!-- Admin: admin@example.com / admin123<br> -->
+      <!-- User: user@example.com / user123 -->
+    </div>
+  </form>
+</div>
